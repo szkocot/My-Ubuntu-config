@@ -1,0 +1,58 @@
+#!/bin/bash
+
+apt update
+apt upgrade -y
+apt install build-essential git cmake gnome-tweak-tool autotools-dev -y
+apt install lm-sensors automake p7zip gparted qnapi curl python3-pip -y
+apt install baobab -y
+# system monitor dependencies
+apt install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
+
+# Install codecs
+echo "Do you wish to install video codecs for encoding and playing videos?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) apt -y install ubuntu-restricted-extras va-driver-all vainfo libva2 gstreamer1.0-libav gstreamer1.0-vaapi; break;;
+        No ) break;;
+    esac
+done
+
+# chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg -i google-chrome-stable_current_amd64.deb
+rm google-chrome-stable_current_amd64.deb
+apt-get install chrome-gnome-shell
+
+# misc snaps
+snap install spotify htop
+snap install vscode --classic
+snap install libreoffice
+
+# brother 3in1
+wget https://download.brother.com/welcome/dlf006893/linux-brprinter-installer-2.2.1-1.gz
+gunzip linux-brprinter-installer-*.*.*-*.gz
+bash linux-brprinter-installer-*.*.*-* DCP-J315W
+rm br*
+rm dcp*
+rm *br*
+rm *DCP*
+
+# Big thx to: https://www.linuxmintusers.de/index.php?topic=49752.15
+ln -sf /usr/lib64/sane/libsane-brother* /usr/lib/x86_64-linux-gnu/sane
+ln -sf /usr/lib64/libbrcolm* /usr/lib/x86_64-linux-gnu
+ln -sf /usr/lib64/libbrscandec* /usr/lib/x86_64-linux-gnu
+
+# gnome settings
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop','org.gnome.Nautilus.desktop','org.gnome.Terminal.desktop', 'vscode_vscode.desktop', 'spotify_spotify.desktop', 'vlc_vlc.desktop']"
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 30
+
+#libinput-gestures
+gpasswd -a $USER input
+apt-get install xdotool wmctrl
+apt-get install libinput-tools
+
+git clone https://github.com/bulletmark/libinput-gestures.git
+cd libinput-gestures
+make install
+cd ..
+rm -rf libinput-gestures
