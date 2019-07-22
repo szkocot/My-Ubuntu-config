@@ -25,8 +25,8 @@ apt-get install chrome-gnome-shell
 
 # misc snaps
 snap install spotify htop
-snap install vscode --classic
-snap install libreoffice
+snap install code --classic
+#snap install libreoffice
 
 # brother 3in1
 wget https://download.brother.com/welcome/dlf006893/linux-brprinter-installer-2.2.1-1.gz
