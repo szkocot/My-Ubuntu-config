@@ -56,3 +56,4 @@ cd libinput-gestures
 make install
 cd ..
 rm -rf libinput-gestures
+gpasswd -a $USER input
