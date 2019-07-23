@@ -1,3 +1,5 @@
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/JackHack96/dell-xps-9570-ubuntu-respin/master/xps-tweaks.sh)"
+
 #tlp
 apt install thermald tlp tlp-rdw powertop
 
