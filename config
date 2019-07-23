@@ -8,15 +8,6 @@ apt install baobab -y
 # system monitor dependencies
 apt install gir1.2-gtop-2.0 gir1.2-networkmanager-1.0
 
-# Install codecs
-echo "Do you wish to install video codecs for encoding and playing videos?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) apt -y install ubuntu-restricted-extras va-driver-all vainfo libva2 gstreamer1.0-libav gstreamer1.0-vaapi; break;;
-        No ) break;;
-    esac
-done
-
 # chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 dpkg -i google-chrome-stable_current_amd64.deb
