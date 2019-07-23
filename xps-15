@@ -1,20 +1,9 @@
-#!/bin/bash
-
-apt update
-apt upgrade -y
-
 #tlp
 apt install thermald tlp tlp-rdw powertop
-
-# Fix Sleep/Wake Bluetooth Bug
-sed -i '/RESTORE_DEVICE_STATE_ON_STARTUP/s/=.*/=1/' /etc/default/tlp
-systemctl restart tlp
 
 # Dell Power Manager
 apt install smbios-utils
 smbios-thermal-ctl --set-thermal-mode quiet
-
-echo "options i915 enable_fbc=1 enable_guc=3 disable_power_well=0 fastboot=1" > /etc/modprobe.d/i915.conf
 
 # Let users check fan speed with lm-sensors
 echo "options dell-smm-hwmon restricted=0 force=1" > /etc/modprobe.d/dell-smm-hwmon.conf
