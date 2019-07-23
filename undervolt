@@ -2,7 +2,7 @@
 
 # undervolt
 pip3 install undervolt
-undervolt --gpu -125 --core -125 --cache -125
+python3 -m undervolt --gpu -125 --core -125 --cache -125
 
 # undervolt on boot
-echo '[Unit]\nDescription=undervolt\n[Service]\nType=oneshot\nExecStart=undervolt -v --core -125 --cache -125 --gpu -125' > /etc/systemd/system/undervolt.service
+echo '[Unit]\nDescription=undervolt\n[Service]\nType=oneshot\nExecStart=python3 -m undervolt -v --core -125 --cache -125 --gpu -125' > /etc/systemd/system/undervolt.service
